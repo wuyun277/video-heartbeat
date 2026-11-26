@@ -1,0 +1,28 @@
+{
+  "data_dir": "../training/training_dataset",
+  "runs_dir": "runs",
+  "subjects": ["subject8", "subject9", "subject10"],
+  "reserved_subjects": ["subject14", "subject15"],
+  "clip_start_seconds": 0.0,
+  "clip_seconds": 30.0,
+  "window_seconds": 10.0,
+  "edge_trim_seconds": 0.8,
+  "band_hz": [0.7, 3.0],
+  "strengths": [0.005, 0.01],
+  "rgb_weights": [0.6, 1.0, 0.3],
+  "mask_blur_sigma": 3.0,
+  "targets": [
+    {"name": "sine_72", "kind": "sine", "bpm": 72.0},
+    {"name": "donor_subject11", "kind": "ppg", "subject": "subject11"}
+  ],
+  "extractors": ["GREEN", "POS", "CHROM", "EfficientPhys"],
+  "efficientphys": {
+    "weights": "../models/PURE_EfficientPhys.pth",
+    "device": "auto",
+    "image_size": 72,
+    "chunk_frames": 180,
+    "output_type": "diff_normalized"
+  },
+  "save_example_videos": true,
+  "notes": "Development pilot only; subject14/15 are reserved. No optimization, compression robustness or paper-level reproduction."
+}

@@ -1,0 +1,47 @@
+{
+  "paths": {
+    "input_dir": "input",
+    "output_dir": "output",
+    "input_video": "input/ubfc_rppg/subject5_20s.mp4",
+    "output_video": "output/ubfc_subject5_efficientphys_output.mp4",
+    "csv": "output/ubfc_subject5_efficientphys.csv"
+  },
+  "logging": {
+    "interval_seconds": 1.0
+  },
+  "method": {
+    "name": "efficientphys",
+    "device": "cuda",
+    "model_path": "models/PURE_EfficientPhys.pth",
+    "input_size": 72,
+    "frame_depth": 10,
+    "face_box_scale": 1.5,
+    "min_spectral_score": 0.15
+  },
+  "camera": {
+    "index": 0,
+    "width": 640,
+    "height": 480,
+    "fps": 30
+  },
+  "fusion": {
+    "agreement_bpm": 8.0,
+    "peak_bandwidth_bpm": 6.0,
+    "min_peak_relative_height": 0.25,
+    "min_region_score": 0.2,
+    "min_fused_score": 0.4,
+    "ambiguity_ratio": 0.9,
+    "history_seconds": 5.0,
+    "max_motion_fraction": 0.15
+  },
+  "analysis": {
+    "window": 15.0,
+    "update": 1.0,
+    "min_bpm": 42.0,
+    "max_bpm": 180.0,
+    "motion_limit": 0.12,
+    "smoothing_samples": 3,
+    "trend_seconds": 60.0,
+    "min_window": 8.0
+  }
+}

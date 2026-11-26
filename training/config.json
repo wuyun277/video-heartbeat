@@ -1,0 +1,97 @@
+{
+  "active_model": "efficientphys_c",
+  "paths": {
+    "data_dir": "training_dataset",
+    "cache_dir": "cache",
+    "runs_dir": "runs"
+  },
+  "subjects": {
+    "train": [
+      "subject8",
+      "subject9",
+      "subject10",
+      "subject11",
+      "subject12",
+      "subject13"
+    ],
+    "valid": [
+      "subject14"
+    ],
+    "test": [
+      "subject15"
+    ]
+  },
+  "preprocess": {
+    "image_size": 72,
+    "fps": 30.0,
+    "face_box_scale": 1.5,
+    "alignment": "index",
+    "manual_face_boxes": {}
+  },
+  "test": {
+    "window_seconds": 6,
+    "min_bpm": 42,
+    "max_bpm": 180
+  },
+  "models": {
+    "efficientphys_c": {
+      "model": {
+        "frame_depth": 10
+      },
+      "train": {
+        "epochs": 5,
+        "batch_size": 4,
+        "learning_rate": 0.009,
+        "weight_decay": 0,
+        "chunk_length": 180,
+        "num_workers": 0,
+        "device": "cuda",
+        "seed": 42,
+        "log_every": 5,
+        "loss": "mse",
+        "scheduler": "onecycle"
+      }
+    },
+    "efficientphys_t": {
+      "model": {
+        "frame_depth": 10,
+        "variant": "t1",
+        "patch_size": 4,
+        "embed_dim": 96,
+        "num_heads": [
+          3,
+          6,
+          12,
+          24
+        ],
+        "window_size": 7,
+        "mlp_ratio": 4,
+        "dropout": 0,
+        "gradient_checkpointing": true
+      },
+      "preprocess": {
+        "crop_mode": "full_frame",
+        "image_normalization": "raw",
+        "label_type": "standardized"
+      },
+      "train": {
+        "epochs": 10,
+        "batch_size": 1,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.01,
+        "chunk_length": 180,
+        "num_workers": 0,
+        "device": "cuda",
+        "seed": 42,
+        "log_every": 5,
+        "loss": "mse",
+        "scheduler": "constant"
+      },
+      "test": {
+        "window_seconds": 6,
+        "min_bpm": 45,
+        "max_bpm": 150
+      }
+    }
+  }
+}
